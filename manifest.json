@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Auto Dark Mode for Gmail",
-    "version": "1.2",
+    "version": "1.2.1",
     "description": "Automatically switches Gmail between dark and light mode based on system settings.",
     "homepage_url": "https://github.com/daaain/Gmail-System-Theme-mode",
     "content_scripts": [

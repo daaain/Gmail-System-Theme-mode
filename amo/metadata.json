@@ -22,7 +22,7 @@
   "version": {
     "license": "MIT",
     "release_notes": {
-      "en-US": "Gmail's account menu, Google apps menu and contact cards are now darkened too, so Firefox will ask you to allow access to ogs.google.com and contacts.google.com. Emails designed with a dark background now keep their original colours."
+      "en-US": "First release on addons.mozilla.org. Gmail follows your system theme, along with its account menu, Google apps menu and contact cards, while emails designed with a dark background keep their original colours."
     }
   }
 }
