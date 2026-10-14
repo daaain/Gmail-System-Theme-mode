@@ -1,5 +1,7 @@
 # Gmail-System-Theme-mode
 
+A fork of [bernardolob/Gmail-System-Theme-mode](https://github.com/bernardolob/Gmail-System-Theme-mode) by Bernardo Lobão, published on addons.mozilla.org as "Auto Dark Mode for Gmail".
+
 Description:
 This is a browser extension for Chrome (and other Chromium browsers) and Firefox that makes Gmail turn dark mode or light mode depending on your browser system theme.
 i.e. When your browser is on dark mode, your Gmail page turns to dark mode. Otherwise, if your browser is on light mode, the dark mode is disabled and your Gmail page returns to default theme mode.
@@ -21,6 +23,10 @@ Setup Instructions (Chrome, Edge, Brave and other Chromium browsers):
 7 - Open Gmail and see if it worked
 
 Setup Instructions (Firefox 140 or newer):
+
+Install "Auto Dark Mode for Gmail" from addons.mozilla.org: https://addons.mozilla.org/firefox/addon/auto-dark-mode-for-gmail/
+
+To load it from source instead:
 
 1 - Download the extension from the GitHub page and unzip the file
 
@@ -54,11 +60,22 @@ Run `npm install` once. This also downloads a copy of Chrome and Firefox for the
 - `npm run start:firefox` opens Firefox with the extension loaded, for trying it on the real Gmail.
 - `npm run build` creates a zip in `web-ext-artifacts/` for publishing.
 - `npm run sign` gets the extension signed by Mozilla as an unlisted add-on (see the Firefox setup instructions above).
+- `npm run icons` renders `images/icon.svg` to the PNG icons.
+
+Releasing on addons.mozilla.org:
+
+1 - Increase `version` in `manifest.json` and update the release notes in `amo/metadata.json`
+
+2 - `npm run sign:listed` uploads the new version together with the listing text in `amo/metadata.json` (name, summary, description, categories, links and licence). It goes live once Mozilla has reviewed it
+
+3 - `npm run amo:listing` uploads the listing icon, which `web-ext` can't do. It also updates the listing text, so after editing only `amo/metadata.json` you can run it without releasing a new version
 
 
 Disclaimers:
 - This extension works by inverting colors. Images in emails, profile images and label colors are inverted back, so they keep their original colors.
 - With a picture theme, the picture and the sidebar are left alone and only the message list and the open email are darkened.
 - Themes that are already dark (Gmail's own Dark theme, or a picture theme with dark panels) are left untouched.
+
+License: MIT, see `LICENSE`. Not affiliated with Google; Gmail is a trademark of Google LLC.
 
 Please buy me a coffee: https://buymeacoffee.com/bernardolobao

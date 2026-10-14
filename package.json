@@ -7,7 +7,10 @@
     "lint": "web-ext lint",
     "start:firefox": "web-ext run --start-url https://mail.google.com",
     "build": "web-ext build --overwrite-dest",
-    "sign": "web-ext sign --channel unlisted"
+    "sign": "web-ext sign --channel unlisted",
+    "sign:listed": "web-ext sign --channel listed --amo-metadata amo/metadata.json",
+    "amo:listing": "node scripts/amo-listing.mjs",
+    "icons": "node scripts/make-icons.mjs"
   },
   "devDependencies": {
     "puppeteer": "^25.13.0",
@@ -16,6 +19,9 @@
   "webExt": {
     "ignoreFiles": [
       "test",
+      "amo",
+      "scripts",
+      "images/icon.svg",
       "package.json",
       "package-lock.json"
     ]

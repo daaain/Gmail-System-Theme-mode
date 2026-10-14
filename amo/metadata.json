@@ -1,0 +1,28 @@
+{
+  "name": {
+    "en-US": "Auto Dark Mode for Gmail"
+  },
+  "slug": "auto-dark-mode-for-gmail",
+  "summary": {
+    "en-US": "Makes Gmail follow your system theme: dark when your computer is in dark mode, back to normal in light mode. No settings, no data collected."
+  },
+  "description": {
+    "en-US": "Gmail on the web stays bright white even after the rest of your computer has switched to dark mode. This add-on makes it follow your system theme instead:\n\n- Dark mode on: Gmail turns dark.\n- Light mode on: Gmail goes back to its normal look.\n- Switches as soon as your system theme changes, no reload needed.\n\n**How it works**\n\nThe add-on inverts Gmail's colours, then inverts images in emails, profile pictures and label colours back so they keep their real colours. Emails designed with a dark background keep their original colours, and Gmail's account menu, Google apps menu and contact cards are darkened too. With a picture theme, only the message list and the open email are darkened. Themes that are already dark, including Gmail's own Dark theme, are left alone.\n\n**Privacy**\n\nIt only runs on Gmail (mail.google.com) and on the account menu, apps menu and contact cards Gmail shows from ogs.google.com and contacts.google.com. It makes no network requests and collects no data.\n\n**Credits**\n\nOriginally created by Bernardo Lobão ([original repository](https://github.com/bernardolob/Gmail-System-Theme-mode)), with Firefox support and theme detection added by Daniel Demmel. Released under the MIT licence.\n\nThis add-on is not made, endorsed or supported by Google. Gmail is a trademark of Google LLC."
+  },
+  "categories": [
+    "appearance"
+  ],
+  "homepage": {
+    "en-US": "https://github.com/daaain/Gmail-System-Theme-mode"
+  },
+  "support_url": {
+    "en-US": "https://github.com/daaain/Gmail-System-Theme-mode/issues"
+  },
+  "is_experimental": false,
+  "version": {
+    "license": "MIT",
+    "release_notes": {
+      "en-US": "Gmail's account menu, Google apps menu and contact cards are now darkened too, so Firefox will ask you to allow access to ogs.google.com and contacts.google.com. Emails designed with a dark background now keep their original colours."
+    }
+  }
+}
