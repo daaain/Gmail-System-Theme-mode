@@ -78,9 +78,9 @@ The first version has to be uploaded by hand, as the Chrome Web Store API can on
 
 2 - `npm run build:chrome` creates `web-ext-artifacts/auto-dark-mode-for-gmail-chrome.zip`. Upload it in the developer dashboard
 
-3 - Fill in the Store listing tab: the text can be adapted from `amo/metadata.json`, and `npm run screenshots` renders 1280x800 screenshots of the fake Gmail pages into `web-ext-artifacts/screenshots/` (screenshots of the real Gmail will look better)
+3 - Fill in the Store listing tab with the text in `chrome/listing.md`. `npm run screenshots` renders 1280x800 screenshots of the fake Gmail pages into `web-ext-artifacts/screenshots/` (screenshots of the real Gmail will look better)
 
-4 - Fill in the Privacy tab: single purpose ("Makes Gmail follow the system light or dark theme"), why it runs on `mail.google.com`, `ogs.google.com` and `contacts.google.com` (to darken Gmail and the menus and contact cards it embeds from those sites), no remote code, no data collected, and link to `PRIVACY.md` on GitHub as the privacy policy
+4 - Fill in the Privacy tab, also from `chrome/listing.md`
 
 5 - Submit for review
 

@@ -24,6 +24,7 @@
     "ignoreFiles": [
       "test",
       "amo",
+      "chrome",
       "scripts",
       "PRIVACY.md",
       "images/icon.svg",

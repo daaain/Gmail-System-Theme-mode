@@ -22,7 +22,7 @@
   "version": {
     "license": "MIT",
     "release_notes": {
-      "en-US": "First release on addons.mozilla.org. Gmail follows your system theme, along with its account menu, Google apps menu and contact cards, while emails designed with a dark background keep their original colours."
+      "en-US": "With a picture theme, compose windows are now darkened too, not only the message list and the open email."
     }
   }
 }
