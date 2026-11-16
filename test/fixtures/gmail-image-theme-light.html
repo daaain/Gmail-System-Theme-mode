@@ -20,6 +20,11 @@
       .toolbar { height: 48px; padding: 0 16px; display: flex; align-items: center; }
       .row { padding: 8px 16px; }
       #photo { display: block; width: 40px; height: 40px; margin: 8px 16px; }
+      .compose-dock { position: fixed; right: 24px; bottom: 0; display: flex; gap: 16px; }
+      .compose { width: 280px; height: 220px; border-radius: 8px 8px 0 0; background: #ffffff; color: #202124; }
+      .compose-header { padding: 8px 16px; background: #f2f6fc; }
+      .compose-body { height: 120px; padding: 8px 16px; }
+      #signature { display: block; width: 24px; height: 24px; margin: 0 16px; }
     </style>
   </head>
   <body>
@@ -41,6 +46,15 @@
           <div class="row">Meeting notes</div>
           <img id="photo" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%23e53935'/%3E%3C/svg%3E">
         </div>
+      </div>
+    </div>
+    <!-- Like Gmail, compose windows float over the picture in a dock of
+         their own, outside the content panel. -->
+    <div class="compose-dock">
+      <div class="compose" role="dialog" aria-label="New Message">
+        <div class="compose-header">New Message</div>
+        <div class="compose-body" role="textbox" contenteditable="true" g_editable="true">Hi there</div>
+        <img id="signature" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23e53935'/%3E%3C/svg%3E">
       </div>
     </div>
   </body>

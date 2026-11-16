@@ -73,7 +73,7 @@ Releasing on addons.mozilla.org:
 
 Disclaimers:
 - This extension works by inverting colors. Images in emails, profile images and label colors are inverted back, so they keep their original colors.
-- With a picture theme, the picture and the sidebar are left alone and only the message list and the open email are darkened.
+- With a picture theme, the picture and the sidebar are left alone and only the message list, the open email and compose windows are darkened.
 - Themes that are already dark (Gmail's own Dark theme, or a picture theme with dark panels) are left untouched.
 
 License: MIT, see `LICENSE`. Not affiliated with Google; Gmail is a trademark of Google LLC.
