@@ -7,12 +7,16 @@
     "lint": "web-ext lint",
     "start:firefox": "web-ext run --start-url https://mail.google.com",
     "build": "web-ext build --overwrite-dest",
+    "build:chrome": "web-ext build --overwrite-dest --filename auto-dark-mode-for-gmail-chrome.zip",
     "sign": "web-ext sign --channel unlisted",
     "sign:listed": "web-ext sign --channel listed --amo-metadata amo/metadata.json",
     "amo:listing": "node scripts/amo-listing.mjs",
-    "icons": "node scripts/make-icons.mjs"
+    "publish:chrome": "npm run build:chrome && chrome-webstore-upload --source web-ext-artifacts/auto-dark-mode-for-gmail-chrome.zip",
+    "icons": "node scripts/make-icons.mjs",
+    "screenshots": "node scripts/store-screenshots.mjs"
   },
   "devDependencies": {
+    "chrome-webstore-upload-cli": "^4.0.2",
     "puppeteer": "^25.13.0",
     "web-ext": "^10.7.0"
   },
@@ -21,6 +25,7 @@
       "test",
       "amo",
       "scripts",
+      "PRIVACY.md",
       "images/icon.svg",
       "package.json",
       "package-lock.json"

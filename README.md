@@ -70,6 +70,34 @@ Releasing on addons.mozilla.org:
 
 3 - `npm run amo:listing` uploads the listing icon, which `web-ext` can't do. It also updates the listing text, so after editing only `amo/metadata.json` you can run it without releasing a new version
 
+Releasing on the Chrome Web Store:
+
+The first version has to be uploaded by hand, as the Chrome Web Store API can only update existing items:
+
+1 - Register at https://chrome.google.com/webstore/devconsole (one-off fee, 2-step verification required)
+
+2 - `npm run build:chrome` creates `web-ext-artifacts/auto-dark-mode-for-gmail-chrome.zip`. Upload it in the developer dashboard
+
+3 - Fill in the Store listing tab: the text can be adapted from `amo/metadata.json`, and `npm run screenshots` renders 1280x800 screenshots of the fake Gmail pages into `web-ext-artifacts/screenshots/` (screenshots of the real Gmail will look better)
+
+4 - Fill in the Privacy tab: single purpose ("Makes Gmail follow the system light or dark theme"), why it runs on `mail.google.com`, `ogs.google.com` and `contacts.google.com` (to darken Gmail and the menus and contact cards it embeds from those sites), no remote code, no data collected, and link to `PRIVACY.md` on GitHub as the privacy policy
+
+5 - Submit for review
+
+To release later versions from the command line:
+
+1 - Create OAuth credentials for the Chrome Web Store API, following https://github.com/fregante/chrome-webstore-upload-keys, and set them in your shell together with the extension's ID and your publisher ID (both shown in the developer dashboard):
+
+```sh
+export CLIENT_ID='...'
+export CLIENT_SECRET='...'
+export REFRESH_TOKEN='...'
+export PUBLISHER_ID='...'
+export EXTENSION_ID='...'
+```
+
+2 - Increase `version` in `manifest.json`, then run `npm run publish:chrome`. It builds the zip, uploads it and submits it for review
+
 
 Disclaimers:
 - This extension works by inverting colors. Images in emails, profile images and label colors are inverted back, so they keep their original colors.
