@@ -223,6 +223,33 @@ for (const browserName of browsers) {
         });
         assert.match(inverted, /invert/);
       });
+
+      it('renders the compose window dark', async () => {
+        for (const selector of ['.compose-header', '.compose-body']) {
+          const { x, y } = await page.$eval(selector, (el) => {
+            const box = el.getBoundingClientRect();
+            return { x: box.right - 20, y: box.bottom - 10 };
+          });
+          const pixel = await pixelAt(page, x, y);
+          assert.ok(brightness(pixel) < 60, `${selector} should be dark, got rgb(${pixel})`);
+        }
+      });
+
+      it('keeps images in the compose window in their original colours', async () => {
+        await assertStaysRed(page, '#signature');
+      });
+
+      it('darkens a newly opened compose window before it is shown', async () => {
+        const inverted = await page.evaluate(async () => {
+          const compose = document.querySelector('.compose').cloneNode(true);
+          compose.className = 'compose';
+          document.querySelector('.compose-dock').append(compose);
+          await Promise.resolve();
+          await new Promise((resolve) => requestAnimationFrame(resolve));
+          return getComputedStyle(compose).filter;
+        });
+        assert.match(inverted, /invert/);
+      });
     });
 
     describe('system theme: dark, email designed with a dark background', () => {

@@ -4,7 +4,8 @@
 // - plain light themes: invert the whole page;
 // - picture themes with light panels: leave the picture (and the sidebar
 //   drawn on top of it) alone, and invert only the content panel holding the
-//   toolbar, the message list and the open email;
+//   toolbar, the message list and the open email, and the compose windows
+//   floating over the picture;
 // - dark themes, plain or picture: already dark, so leave them untouched.
 //
 // Gmail's account and apps menus and the contact card shown when hovering
@@ -18,6 +19,8 @@ const ORIGINAL_CLASS = "gmail-dark-mode-original";
 const CHECKED_ATTRIBUTE = "data-gmail-dark-mode-checked";
 // The body of each message in an open email.
 const EMAIL_BODY = ".a3s";
+// The body of each message being written, in a compose window or a reply.
+const COMPOSE_BODY = '[g_editable="true"]';
 const GMAIL_ORIGIN = "https://mail.google.com";
 const GOOGLE_FRAMES =
   'iframe:is([name="account"], [name="app"], [src*="//ogs.google.com/"], [src*="//contacts.google.com/"])';
@@ -148,13 +151,22 @@ function contentPanel(mainArea, tolerancePx = 24) {
   return panel;
 }
 
-// Returns the element to invert, or null to leave Gmail as it is.
-function elementToInvert() {
-  if (!systemIsDark) return null;
+// Compose windows float over the picture, outside the content panel. A
+// reply written inside the open email is already in the panel.
+function composeWindowsOutside(panel) {
+  return [...document.querySelectorAll(COMPOSE_BODY)]
+    .map((body) => body.closest('[role="dialog"]'))
+    .filter((composeWindow) => composeWindow && !panel?.contains(composeWindow));
+}
+
+// Returns the elements to invert, none to leave Gmail as it is.
+function elementsToInvert() {
+  if (!systemIsDark) return new Set();
   const mainArea = visibleMainArea();
-  if (hasLightText(mainArea ?? document.body)) return null;
-  if (!hasThemePicture()) return document.documentElement;
-  return mainArea ? contentPanel(mainArea) : null;
+  if (hasLightText(mainArea ?? document.body)) return new Set();
+  if (!hasThemePicture()) return new Set([document.documentElement]);
+  const panel = mainArea ? contentPanel(mainArea) : null;
+  return new Set([panel, ...composeWindowsOutside(panel)].filter(Boolean));
 }
 
 function hasDarkBackground(element) {
@@ -193,17 +205,19 @@ function addStyles() {
 }
 
 function sync() {
-  const target = elementToInvert();
+  const targets = elementsToInvert();
   for (const element of document.querySelectorAll(`.${INVERTED_CLASS}`)) {
-    if (element !== target) element.classList.remove(INVERTED_CLASS);
+    if (!targets.has(element)) element.classList.remove(INVERTED_CLASS);
   }
-  if (!target) {
+  if (targets.size === 0) {
     document.getElementById(STYLE_ID)?.remove();
     return;
   }
   addStyles();
   // Only touch the class when needed: every write triggers our observer.
-  if (!target.classList.contains(INVERTED_CLASS)) target.classList.add(INVERTED_CLASS);
+  for (const target of targets) {
+    if (!target.classList.contains(INVERTED_CLASS)) target.classList.add(INVERTED_CLASS);
+  }
   keepDarkEmailsOriginal();
 }
 
